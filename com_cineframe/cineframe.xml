@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" method="upgrade">
+    <name>com_cineframe</name>
+    <author>WebtechSolutions</author>
+    <creationDate>2026-06</creationDate>
+    <copyright>(C) 2026 WebtechSolutions</copyright>
+    <license>GNU General Public License version 2 or later</license>
+    <version>1.0.0</version>
+    <description>CineFrame - διαχείριση βιβλιοθήκης βίντεο (YouTube/Vimeo/embed) για χρήση στα άρθρα με {cineframe videoid=N}.</description>
+    <namespace path="src">Webtech\Component\Cineframe</namespace>
+
+    <install>
+        <sql>
+            <file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+        </sql>
+    </install>
+    <uninstall>
+        <sql>
+            <file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
+        </sql>
+    </uninstall>
+    <update>
+        <schemas>
+            <schemapath type="mysql">sql/updates/mysql</schemapath>
+        </schemas>
+    </update>
+
+    <administration>
+        <menu link="option=com_cineframe">CineFrame</menu>
+        <files folder="administrator/components/com_cineframe">
+            <folder>forms</folder>
+            <folder>language</folder>
+            <folder>services</folder>
+            <folder>sql</folder>
+            <folder>src</folder>
+            <folder>tmpl</folder>
+            <filename>access.xml</filename>
+            <filename>cineframe.xml</filename>
+        </files>
+    </administration>
+</extension>

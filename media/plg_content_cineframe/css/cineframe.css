@@ -1,0 +1,33 @@
+/**
+ * CineFrame - responsive video player (self-contained, theme-independent).
+ * @copyright (C) 2026 WebtechSolutions
+ * @license GNU General Public License version 2 or later
+ */
+.cineframe {
+    margin: 1.75rem auto;
+    width: 100%;
+}
+
+.cineframe__frame {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 */
+    border-radius: 8px;
+    overflow: hidden;
+    background: #000;
+}
+
+.cineframe__frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.cineframe--embed iframe,
+.cineframe--embed video {
+    width: 100%;
+    border-radius: 8px;
+    display: block;
+}

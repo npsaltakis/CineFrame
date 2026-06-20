@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" group="content" method="upgrade">
+    <name>plg_content_cineframe</name>
+    <author>WebtechSolutions</author>
+    <creationDate>2026-06</creationDate>
+    <copyright>(C) 2026 WebtechSolutions</copyright>
+    <license>GNU General Public License version 2 or later</license>
+    <version>1.0.0</version>
+    <description>CineFrame - εισάγει YouTube/Vimeo/embed βίντεο στα άρθρα με shortcode {cineframe videoid=44 width=540}. Υποστηρίζει legacy {avsplayer ...}.</description>
+    <namespace path="src">Webtech\Plugin\Content\Cineframe</namespace>
+    <files>
+        <folder plugin="cineframe">services</folder>
+        <folder>src</folder>
+    </files>
+    <media destination="plg_content_cineframe" folder="media">
+        <folder>css</folder>
+    </media>
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field
+                    name="default_width"
+                    type="number"
+                    label="Default width (px)"
+                    description="Προεπιλεγμένο πλάτος όταν δεν ορίζεται width στο shortcode"
+                    default="640"
+                />
+            </fieldset>
+        </fields>
+    </config>
+</extension>

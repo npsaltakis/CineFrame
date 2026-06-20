@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fieldset name="details">
+        <field name="id" type="hidden" />
+
+        <field
+            name="title"
+            type="text"
+            label="COM_CINEFRAME_FIELD_TITLE_LABEL"
+            description="COM_CINEFRAME_FIELD_TITLE_DESC"
+            required="true"
+            size="60"
+        />
+
+        <field
+            name="type"
+            type="list"
+            label="COM_CINEFRAME_FIELD_TYPE_LABEL"
+            default="youtube"
+            validate="options"
+        >
+            <option value="youtube">COM_CINEFRAME_TYPE_YOUTUBE</option>
+            <option value="vimeo">COM_CINEFRAME_TYPE_VIMEO</option>
+            <option value="embed">COM_CINEFRAME_TYPE_EMBED</option>
+        </field>
+
+        <field
+            name="source"
+            type="textarea"
+            label="COM_CINEFRAME_FIELD_SOURCE_LABEL"
+            description="COM_CINEFRAME_FIELD_SOURCE_DESC"
+            rows="5"
+            cols="60"
+            required="true"
+        />
+
+        <field
+            name="width"
+            type="number"
+            label="COM_CINEFRAME_FIELD_WIDTH_LABEL"
+            description="COM_CINEFRAME_FIELD_WIDTH_DESC"
+            default="640"
+            min="0"
+        />
+
+        <field
+            name="published"
+            type="list"
+            label="COM_CINEFRAME_FIELD_STATUS_LABEL"
+            default="1"
+        >
+            <option value="1">JPUBLISHED</option>
+            <option value="0">JUNPUBLISHED</option>
+        </field>
+    </fieldset>
+</form>
