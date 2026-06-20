@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="package" method="upgrade">
+    <name>CineFrame</name>
+    <packagename>cineframe</packagename>
+    <author>WebtechSolutions</author>
+    <authorUrl>https://github.com/npsaltakis/CineFrame</authorUrl>
+    <creationDate>2026-06</creationDate>
+    <copyright>(C) 2026 WebtechSolutions</copyright>
+    <license>GNU General Public License version 2 or later</license>
+    <version>1.0.0</version>
+    <url>https://github.com/npsaltakis/CineFrame</url>
+    <description>CineFrame - video library component + content plugin (YouTube/Vimeo/embed) for Joomla 5 &amp; 6. Insert videos into any article with {cineframe videoid=N width=540}.</description>
+    <files>
+        <file type="component" id="com_cineframe">com_cineframe.zip</file>
+        <file type="plugin" group="content" id="cineframe">plg_content_cineframe.zip</file>
+    </files>
+</extension>
