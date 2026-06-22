@@ -13,8 +13,6 @@ videos in the admin and drop them into any article with a shortcode.
 {cineframe embed=<iframe ...>}          ← raw embed
 ```
 
-Legacy `{avsplayer videoid=N ...}` is also supported (drop-in for the old plugin).
-
 ## Contents
 
 ```
