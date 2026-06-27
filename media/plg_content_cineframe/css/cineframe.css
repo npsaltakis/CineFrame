@@ -41,6 +41,89 @@
 }
 
 /* ═══════════════════════════════════════════
+   CineFrame modal lightbox
+   ═══════════════════════════════════════════ */
+.cf-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: rgba(0,0,0,.88);
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    backdrop-filter: blur(4px);
+}
+.cf-modal--open { display: flex; animation: cfFadeIn .2s ease; }
+@keyframes cfFadeIn { from { opacity:0; } to { opacity:1; } }
+
+.cf-modal__close {
+    position: fixed;
+    top: 1rem;
+    right: 1.25rem;
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.25);
+    color: #fff;
+    font-size: 1.1rem;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .15s;
+    z-index: 100001;
+    line-height: 1;
+}
+.cf-modal__close:hover { background: rgba(236,67,15,.85); border-color: transparent; }
+
+.cf-modal__box {
+    width: 100%;
+    max-width: 960px;
+    background: #111;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 24px 80px rgba(0,0,0,.7);
+    animation: cfSlideUp .22s ease;
+}
+@keyframes cfSlideUp {
+    from { transform: translateY(20px); opacity:0; }
+    to   { transform: translateY(0);    opacity:1; }
+}
+.cf-modal__player {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    background: #000;
+}
+.cf-modal__player iframe,
+.cf-modal__player video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+.cf-modal__player video { object-fit: contain; background: #000; }
+.cf-modal__player > div {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0 !important;
+}
+.cf-modal__player > div iframe {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+.cf-modal__info { padding: .9rem 1.25rem 1rem; }
+.cf-modal__title { font-size: 1rem; font-weight: 700; color: #f0f0f0; margin: 0 0 .3rem; }
+.cf-modal__desc  { font-size: .82rem; color: #aaa; margin: 0; line-height: 1.5; }
+
+/* ═══════════════════════════════════════════
    CineFrame frontend pages
    ═══════════════════════════════════════════ */
 

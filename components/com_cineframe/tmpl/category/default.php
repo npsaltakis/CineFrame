@@ -16,6 +16,19 @@ use Joomla\CMS\Uri\Uri;
 $cssUrl = Uri::root(true) . '/media/plg_content_cineframe/css/cineframe.css';
 ?>
 <link rel="stylesheet" href="<?php echo $cssUrl; ?>">
+
+<!-- Modal overlay -->
+<div id="cf-modal" class="cf-modal" onclick="cfModalClose(event)">
+    <button class="cf-modal__close" onclick="cfModalClose(null, true)">&#10005;</button>
+    <div class="cf-modal__box">
+        <div class="cf-modal__player" id="cf-modal-player"></div>
+        <div class="cf-modal__info">
+            <h2 class="cf-modal__title" id="cf-modal-title"></h2>
+            <p class="cf-modal__desc" id="cf-modal-desc"></p>
+        </div>
+    </div>
+</div>
+
 <div class="cf-page">
 
     <div class="cf-page-header">
@@ -44,8 +57,8 @@ $cssUrl = Uri::root(true) . '/media/plg_content_cineframe/css/cineframe.css';
                     }
                 }
             ?>
-                <div class="cf-video-card" id="cf-card-<?php echo (int) $v->id; ?>">
-                    <div class="cf-thumb" onclick="cfPlay(<?php echo (int) $v->id; ?>, this)">
+                <div class="cf-video-card" onclick="cfPlay(<?php echo (int) $v->id; ?>)" style="cursor:pointer">
+                    <div class="cf-thumb">
                         <?php if ($thumb) : ?>
                             <img src="<?php echo htmlspecialchars($thumb, ENT_QUOTES, 'UTF-8'); ?>"
                                  alt="<?php echo htmlspecialchars($v->title, ENT_QUOTES, 'UTF-8'); ?>"
@@ -55,7 +68,6 @@ $cssUrl = Uri::root(true) . '/media/plg_content_cineframe/css/cineframe.css';
                         <?php endif; ?>
                         <div class="cf-play-overlay"><span class="cf-play-btn">&#9654;</span></div>
                     </div>
-                    <div class="cf-video-embed" id="cf-embed-<?php echo (int) $v->id; ?>"></div>
                     <div class="cf-video-info">
                         <h3 class="cf-video-title"><?php echo htmlspecialchars($v->title, ENT_QUOTES, 'UTF-8'); ?></h3>
                         <?php if ($v->description) : ?>
@@ -72,43 +84,66 @@ $cssUrl = Uri::root(true) . '/media/plg_content_cineframe/css/cineframe.css';
                 'id'     => (int) $v->id,
                 'type'   => $v->type,
                 'source' => $v->source,
-                'width'  => (int) $v->width ?: 640
+                'title'  => $v->title,
+                'desc'   => (string) $v->description
             ];
         }, $this->videos)); ?>;
 
-        function cfPlay(id, thumbEl) {
+        function cfPlay(id) {
             var v = cfVideos.find(function(x){ return x.id === id; });
             if (!v) return;
 
-            var card  = document.getElementById('cf-card-' + id);
-            var embed = document.getElementById('cf-embed-' + id);
-            var html  = '';
-
+            var html = '';
             if (v.type === 'youtube') {
                 var yid = v.source.match(/(?:v=|youtu\.be\/|embed\/)([a-zA-Z0-9_\-]{11})/);
-                if (yid) {
-                    html = '<div class="cf-embed-wrap"><iframe src="https://www.youtube.com/embed/' + yid[1] + '?autoplay=1&rel=0" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe></div>';
-                }
+                if (yid) html = '<iframe src="https://www.youtube.com/embed/' + yid[1] + '?autoplay=1&rel=0" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>';
             } else if (v.type === 'vimeo') {
                 var vid = v.source.match(/vimeo\.com\/(\d+)/);
-                if (vid) {
-                    html = '<div class="cf-embed-wrap"><iframe src="https://player.vimeo.com/video/' + vid[1] + '?autoplay=1" frameborder="0" allowfullscreen></iframe></div>';
-                }
+                if (vid) html = '<iframe src="https://player.vimeo.com/video/' + vid[1] + '?autoplay=1" frameborder="0" allowfullscreen></iframe>';
             } else if (v.type === 'video') {
-                html = '<div class="cf-embed-wrap"><video src="' + v.source + '" controls autoplay style="width:100%;height:100%;background:#000"></video></div>';
+                html = '<video src="' + v.source + '" controls autoplay></video>';
             } else {
-                // embed type: wrap raw HTML in responsive container
-                html = '<div class="cf-embed-raw">' + v.source + '</div>';
+                // embed — extract or wrap
+                var tmp = document.createElement('div');
+                tmp.innerHTML = v.source;
+                var iframe = tmp.querySelector('iframe');
+                if (iframe) {
+                    iframe.removeAttribute('style');
+                    iframe.removeAttribute('width');
+                    iframe.removeAttribute('height');
+                    if (iframe.src && !iframe.src.includes('autoplay')) {
+                        iframe.src += (iframe.src.includes('?') ? '&' : '?') + 'autoplay=1';
+                    }
+                    html = iframe.outerHTML;
+                } else {
+                    html = v.source;
+                }
             }
 
-            if (html) {
-                card.querySelector('.cf-thumb').style.display = 'none';
-                embed.innerHTML = html;
-                embed.style.display = 'block';
-                // Smooth scroll to card
-                card.scrollIntoView({behavior: 'smooth', block: 'nearest'});
-            }
+            if (!html) return;
+
+            document.getElementById('cf-modal-player').innerHTML = html;
+            document.getElementById('cf-modal-title').textContent = v.title;
+            document.getElementById('cf-modal-desc').textContent = v.desc || '';
+            document.getElementById('cf-modal-desc').style.display = v.desc ? '' : 'none';
+
+            var modal = document.getElementById('cf-modal');
+            modal.classList.add('cf-modal--open');
+            document.body.style.overflow = 'hidden';
         }
+
+        function cfModalClose(e, force) {
+            if (!force && e && e.target !== document.getElementById('cf-modal')) return;
+            var modal = document.getElementById('cf-modal');
+            modal.classList.remove('cf-modal--open');
+            document.body.style.overflow = '';
+            // Stop video/audio by clearing player
+            document.getElementById('cf-modal-player').innerHTML = '';
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') cfModalClose(null, true);
+        });
         </script>
     <?php endif; ?>
 </div>
