@@ -94,8 +94,10 @@ $cssUrl = Uri::root(true) . '/media/plg_content_cineframe/css/cineframe.css';
                 if (vid) {
                     html = '<div class="cf-embed-wrap"><iframe src="https://player.vimeo.com/video/' + vid[1] + '?autoplay=1" frameborder="0" allowfullscreen></iframe></div>';
                 }
+            } else if (v.type === 'video') {
+                html = '<div class="cf-embed-wrap"><video src="' + v.source + '" controls autoplay style="width:100%;height:100%;background:#000"></video></div>';
             } else {
-                // embed type: wrap raw HTML in responsive container if it's not already
+                // embed type: wrap raw HTML in responsive container
                 html = '<div class="cf-embed-raw">' + v.source + '</div>';
             }
 
