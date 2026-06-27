@@ -67,7 +67,7 @@ $this->getDocument()->addStyleSheet(\Joomla\CMS\Uri\Uri::root(true) . '/media/pl
         function cfIframe(value) {
             var html = String(value).trim();
 
-            return /^<iframe\b[\s\S]*<\/iframe>$/i.test(html) ? html : '';
+            return /<iframe\b/i.test(html) ? html : '';
         }
 
         function cfPlay(id, thumbEl) {

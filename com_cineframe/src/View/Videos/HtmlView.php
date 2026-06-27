@@ -27,12 +27,14 @@ class HtmlView extends BaseHtmlView
     protected $items;
     protected $pagination;
     protected $state;
+    protected $categoryOptions;
 
     public function display($tpl = null)
     {
         $this->items      = $this->get('Items');
         $this->pagination = $this->get('Pagination');
         $this->state      = $this->get('State');
+        $this->categoryOptions = $this->get('CategoryOptions');
 
         if (\count($errors = $this->get('Errors'))) {
             throw new \Exception(implode("\n", $errors), 500);

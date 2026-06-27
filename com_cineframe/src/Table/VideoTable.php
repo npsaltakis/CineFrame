@@ -77,6 +77,7 @@ class VideoTable extends Table
 
     private function isIframeEmbed(string $source): bool
     {
-        return preg_match('~^\s*<iframe\b[^>]*>.*?</iframe>\s*$~is', $source) === 1;
+        // Accept a bare <iframe> or any wrapper element (<div>, <blockquote>, etc.) that contains at least one <iframe>
+        return preg_match('~<iframe\b~i', $source) === 1;
     }
 }

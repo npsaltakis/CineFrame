@@ -15,11 +15,61 @@ use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 
 HTMLHelper::_('behavior.multiselect');
+
+$search = (string) $this->state->get('filter.search');
+$catid  = (string) $this->state->get('filter.catid');
+$categoryOptions = array_merge(
+    [HTMLHelper::_('select.option', '', Text::_('COM_CINEFRAME_FILTER_CATEGORY_ALL'))],
+    $this->categoryOptions ?: []
+);
 ?>
 <form action="<?php echo Route::_('index.php?option=com_cineframe&view=videos'); ?>" method="post" name="adminForm" id="adminForm">
     <div class="row">
         <div class="col-md-12">
             <div id="j-main-container" class="j-main-container">
+                <div class="js-stools clearfix mb-3">
+                    <div class="js-stools-container-bar d-flex flex-wrap gap-2 align-items-center">
+                        <label for="filter_search" class="visually-hidden">
+                            <?php echo Text::_('COM_CINEFRAME_FILTER_SEARCH_LABEL'); ?>
+                        </label>
+                        <input
+                            type="text"
+                            name="filter_search"
+                            id="filter_search"
+                            class="form-control"
+                            style="max-width: 320px;"
+                            value="<?php echo $this->escape($search); ?>"
+                            placeholder="<?php echo Text::_('COM_CINEFRAME_FILTER_SEARCH_PLACEHOLDER'); ?>"
+                        >
+
+                        <label for="filter_catid" class="visually-hidden">
+                            <?php echo Text::_('COM_CINEFRAME_FILTER_CATEGORY_LABEL'); ?>
+                        </label>
+                        <?php echo HTMLHelper::_(
+                            'select.genericlist',
+                            $categoryOptions,
+                            'filter_catid',
+                            'class="form-select" style="max-width: 320px;" onchange="this.form.submit()"',
+                            'value',
+                            'text',
+                            $catid,
+                            'filter_catid'
+                        ); ?>
+
+                        <button type="submit" class="btn btn-primary">
+                            <span class="icon-search" aria-hidden="true"></span>
+                            <?php echo Text::_('JSEARCH_FILTER_SUBMIT'); ?>
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            onclick="document.getElementById('filter_search').value=''; document.getElementById('filter_catid').value=''; this.form.submit();"
+                        >
+                            <?php echo Text::_('JSEARCH_FILTER_CLEAR'); ?>
+                        </button>
+                    </div>
+                </div>
+
                 <?php if (empty($this->items)) : ?>
                     <div class="alert alert-info mt-3">
                         <span class="icon-info-circle" aria-hidden="true"></span>

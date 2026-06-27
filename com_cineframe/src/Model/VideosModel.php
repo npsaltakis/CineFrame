@@ -29,6 +29,7 @@ class VideosModel extends ListModel
             $config['filter_fields'] = [
                 'id', 'a.id',
                 'title', 'a.title',
+                'catid', 'a.catid',
                 'type', 'a.type',
                 'published', 'a.published',
                 'ordering', 'a.ordering',
@@ -46,6 +47,9 @@ class VideosModel extends ListModel
         $published = $this->getUserStateFromRequest($this->context . '.filter.published', 'filter_published', '');
         $this->setState('filter.published', $published);
 
+        $catid = $this->getUserStateFromRequest($this->context . '.filter.catid', 'filter_catid', '');
+        $this->setState('filter.catid', $catid);
+
         parent::populateState($ordering, $direction);
     }
 
@@ -53,8 +57,21 @@ class VideosModel extends ListModel
     {
         $id .= ':' . $this->getState('filter.search');
         $id .= ':' . $this->getState('filter.published');
+        $id .= ':' . $this->getState('filter.catid');
 
         return parent::getStoreId($id);
+    }
+
+    public function getCategoryOptions(): array
+    {
+        $db    = $this->getDatabase();
+        $query = $db->getQuery(true)
+            ->select([$db->quoteName('id', 'value'), $db->quoteName('name', 'text')])
+            ->from($db->quoteName('#__cineframe_categories'))
+            ->where($db->quoteName('published') . ' = 1')
+            ->order($db->quoteName('ordering') . ' ASC, ' . $db->quoteName('name') . ' ASC');
+
+        return $db->setQuery($query)->loadObjectList() ?: [];
     }
 
     protected function getListQuery()
@@ -78,7 +95,16 @@ class VideosModel extends ListModel
                 ->bind(':published', $published, \Joomla\Database\ParameterType::INTEGER);
         }
 
-        // Filter by search (title or id).
+        // Filter by category.
+        $catid = $this->getState('filter.catid');
+
+        if (is_numeric($catid) && (int) $catid > 0) {
+            $catid = (int) $catid;
+            $query->where($db->quoteName('a.catid') . ' = :catid')
+                ->bind(':catid', $catid, \Joomla\Database\ParameterType::INTEGER);
+        }
+
+        // Filter by keyword search (title, description, source, or id:id).
         $search = $this->getState('filter.search');
 
         if (!empty($search)) {
@@ -88,8 +114,16 @@ class VideosModel extends ListModel
                     ->bind(':sid', $sid, \Joomla\Database\ParameterType::INTEGER);
             } else {
                 $like = '%' . $search . '%';
-                $query->where($db->quoteName('a.title') . ' LIKE :search')
-                    ->bind(':search', $like);
+                $query->where(
+                    '('
+                    . $db->quoteName('a.title') . ' LIKE :searchTitle OR '
+                    . $db->quoteName('a.description') . ' LIKE :searchDescription OR '
+                    . $db->quoteName('a.source') . ' LIKE :searchSource'
+                    . ')'
+                )
+                    ->bind(':searchTitle', $like)
+                    ->bind(':searchDescription', $like)
+                    ->bind(':searchSource', $like);
             }
         }
 

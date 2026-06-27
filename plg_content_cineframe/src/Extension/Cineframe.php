@@ -136,7 +136,10 @@ final class Cineframe extends CMSPlugin implements SubscriberInterface, Database
                 return '';
             }
 
-            return '<div class="cineframe cineframe--embed"' . $maxWidth . '>' . $iframe . '</div>';
+            return '<div class="cineframe cineframe--embed"' . $maxWidth . '>'
+                . '<div class="cineframe__frame">'
+                . $iframe
+                . '</div></div>';
         }
 
         if ($type === 'video') {
@@ -281,7 +284,7 @@ final class Cineframe extends CMSPlugin implements SubscriberInterface, Database
     {
         $source = trim($source);
 
-        if (preg_match('~^<iframe\b[^>]*>.*?</iframe>$~is', $source) !== 1) {
+        if (preg_match('~<iframe\b~i', $source) !== 1) {
             return '';
         }
 
