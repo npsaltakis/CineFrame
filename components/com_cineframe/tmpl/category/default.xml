@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+    <layout title="COM_CINEFRAME_MENU_CATEGORY_TITLE">
+        <message><![CDATA[COM_CINEFRAME_MENU_CATEGORY_DESC]]></message>
+    </layout>
+    <fields name="request">
+        <fieldset name="request">
+            <field
+                name="id"
+                type="sql"
+                label="COM_CINEFRAME_FIELD_CATID_LABEL"
+                query="SELECT id AS value, name AS text FROM #__cineframe_categories WHERE published=1 ORDER BY ordering ASC"
+                key_field="value"
+                value_field="text"
+                required="true"
+            />
+        </fieldset>
+    </fields>
+</metadata>

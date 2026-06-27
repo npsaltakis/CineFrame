@@ -31,3 +31,125 @@
     border-radius: 8px;
     display: block;
 }
+
+/* ── CineFrame frontend: categories list ── */
+.cf-cat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+}
+.cf-cat-card {
+    display: flex;
+    flex-direction: column;
+    gap: .35rem;
+    background: #fff;
+    border-left: 4px solid #3598db;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.08);
+    padding: 1.1rem 1.3rem;
+    text-decoration: none;
+    transition: box-shadow .2s, transform .2s, border-color .2s;
+}
+.cf-cat-card:hover {
+    box-shadow: 0 6px 20px rgba(0,0,0,.15);
+    transform: translateY(-2px);
+    border-color: #ec430f;
+}
+.cf-cat-name {
+    font-size: .95rem;
+    font-weight: 600;
+    color: #252525;
+}
+.cf-cat-count {
+    font-size: .78rem;
+    color: #3598db;
+    font-weight: 500;
+}
+
+/* ── CineFrame frontend: video grid ── */
+.cf-video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+.cf-video-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,.09);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow .2s, transform .2s;
+}
+.cf-video-card:hover {
+    box-shadow: 0 6px 24px rgba(0,0,0,.15);
+    transform: translateY(-3px);
+}
+.cf-thumb {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #111;
+    overflow: hidden;
+}
+.cf-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity .2s;
+}
+.cf-thumb:hover img { opacity: .85; }
+.cf-play-btn {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: rgba(255,255,255,.85);
+    text-shadow: 0 2px 8px rgba(0,0,0,.5);
+    pointer-events: none;
+}
+.cf-no-thumb {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #222;
+    color: #fff;
+    font-size: 2.5rem;
+}
+.cf-video-embed {
+    aspect-ratio: 16/9;
+    background: #000;
+}
+.cf-video-embed iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+}
+.cf-video-title {
+    font-size: .9rem;
+    font-weight: 600;
+    color: #252525;
+    padding: .75rem 1rem .25rem;
+    margin: 0;
+}
+.cf-video-desc {
+    font-size: .8rem;
+    color: #666;
+    padding: 0 1rem .75rem;
+    margin: 0;
+}
+.cf-cat-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #252525;
+    margin-bottom: 1rem;
+}
+.cf-empty { color: #888; font-style: italic; }

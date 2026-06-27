@@ -5,8 +5,8 @@
     <creationDate>2026-06</creationDate>
     <copyright>(C) 2026 WebtechSolutions</copyright>
     <license>GNU General Public License version 2 or later</license>
-    <version>1.1.0</version>
-    <description>CineFrame - διαχείριση βιβλιοθήκης βίντεο (YouTube/Vimeo/embed) για χρήση στα άρθρα με {cineframe videoid=N}.</description>
+    <version>1.2.0</version>
+    <description>CineFrame - βιβλιοθήκη βίντεο με frontend gallery (YouTube/Vimeo/embed) και {cineframe videoid=N} για άρθρα.</description>
     <namespace path="src">Webtech\Component\Cineframe</namespace>
 
     <install>
@@ -24,6 +24,12 @@
             <schemapath type="mysql">sql/updates/mysql</schemapath>
         </schemas>
     </update>
+
+    <files folder="components/com_cineframe">
+        <folder>services</folder>
+        <folder>src</folder>
+        <folder>tmpl</folder>
+    </files>
 
     <administration>
         <menu link="option=com_cineframe">CineFrame</menu>
