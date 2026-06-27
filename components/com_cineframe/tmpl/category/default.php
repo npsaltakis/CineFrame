@@ -56,6 +56,20 @@ $this->getDocument()->addStyleSheet(\Joomla\CMS\Uri\Uri::root(true) . '/media/pl
             return ['id' => (int)$v->id, 'type' => $v->type, 'source' => $v->source, 'width' => (int)$v->width ?: 640];
         }, $this->videos)); ?>;
 
+        function cfAttr(value) {
+            return String(value)
+                .replace(/&/g, '&amp;')
+                .replace(/"/g, '&quot;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+        }
+
+        function cfIframe(value) {
+            var html = String(value).trim();
+
+            return /^<iframe\b[\s\S]*<\/iframe>$/i.test(html) ? html : '';
+        }
+
         function cfPlay(id, thumbEl) {
             var v = cfVideos.find(function(x){ return x.id === id; });
             if (!v) return;
@@ -69,8 +83,10 @@ $this->getDocument()->addStyleSheet(\Joomla\CMS\Uri\Uri::root(true) . '/media/pl
             } else if (v.type === 'vimeo') {
                 var vid = src.match(/vimeo\.com\/(\d+)/);
                 if (vid) html = '<iframe width="100%" height="315" src="https://player.vimeo.com/video/' + vid[1] + '?autoplay=1" frameborder="0" allowfullscreen></iframe>';
+            } else if (v.type === 'video') {
+                html = '<video width="100%" height="315" src="' + cfAttr(src) + '" controls autoplay preload="metadata"></video>';
             } else {
-                html = src;
+                html = cfIframe(src);
             }
 
             if (html) {

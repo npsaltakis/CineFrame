@@ -6,7 +6,7 @@
     <copyright>(C) 2026 WebtechSolutions</copyright>
     <license>GNU General Public License version 2 or later</license>
     <version>1.2.0</version>
-    <description>CineFrame - βιβλιοθήκη βίντεο με frontend gallery (YouTube/Vimeo/embed) και {cineframe videoid=N} για άρθρα.</description>
+    <description>CineFrame - βιβλιοθήκη βίντεο με frontend gallery (YouTube/Vimeo/video URL/iframe embed) και {cineframe videoid=N} για άρθρα.</description>
     <namespace path="src">Webtech\Component\Cineframe</namespace>
 
     <install>

@@ -62,10 +62,21 @@ class VideoTable extends Table
             return false;
         }
 
-        if (!\in_array($this->type, ['youtube', 'vimeo', 'embed'], true)) {
+        if (!\in_array($this->type, ['youtube', 'vimeo', 'video', 'embed'], true)) {
             $this->type = 'youtube';
         }
 
+        if ($this->type === 'embed' && !$this->isIframeEmbed((string) $this->source)) {
+            $this->setError(Text::_('COM_CINEFRAME_ERR_IFRAME_REQUIRED'));
+
+            return false;
+        }
+
         return parent::check();
+    }
+
+    private function isIframeEmbed(string $source): bool
+    {
+        return preg_match('~^\s*<iframe\b[^>]*>.*?</iframe>\s*$~is', $source) === 1;
     }
 }

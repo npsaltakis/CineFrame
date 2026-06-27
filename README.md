@@ -1,16 +1,17 @@
 # CineFrame — Joomla Video Library (component + content plugin)
 
-Reusable video system for **Joomla 5 & 6**. Manage a library of YouTube / Vimeo / raw-embed
+Reusable video system for **Joomla 5 & 6**. Manage a library of YouTube / Vimeo / video URL / iframe embed
 videos in the admin and drop them into any article with a shortcode.
 
 ## Shortcode
 
 ```
 {cineframe videoid=44 width=540}        ← from the library (recommended)
-{cineframe url=https://youtu.be/xxxx}   ← direct URL (YouTube/Vimeo auto-detected)
+{cineframe url=https://youtu.be/xxxx}   ← direct URL (YouTube/Vimeo/video file auto-detected)
+{cineframe url=https://site.test/video.mp4}
 {cineframe youtube=VIDEO_ID}
 {cineframe vimeo=VIDEO_ID}
-{cineframe embed=<iframe ...>}          ← raw embed
+{cineframe embed="<iframe ...></iframe>"} ← iframe embed
 ```
 
 ## Contents

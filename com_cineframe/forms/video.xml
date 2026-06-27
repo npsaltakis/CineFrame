@@ -32,6 +32,7 @@
         >
             <option value="youtube">COM_CINEFRAME_TYPE_YOUTUBE</option>
             <option value="vimeo">COM_CINEFRAME_TYPE_VIMEO</option>
+            <option value="video">COM_CINEFRAME_TYPE_VIDEO</option>
             <option value="embed">COM_CINEFRAME_TYPE_EMBED</option>
         </field>
 

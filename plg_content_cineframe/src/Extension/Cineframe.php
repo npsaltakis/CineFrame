@@ -24,7 +24,7 @@ use Joomla\Event\SubscriberInterface;
 
 /**
  * Replaces {cineframe ...} (and legacy {avsplayer ...}) shortcodes with
- * responsive YouTube / Vimeo / raw-embed players.
+ * responsive YouTube / Vimeo / direct video URL / iframe embed players.
  */
 final class Cineframe extends CMSPlugin implements SubscriberInterface, DatabaseAwareInterface
 {
@@ -130,7 +130,26 @@ final class Cineframe extends CMSPlugin implements SubscriberInterface, Database
         $maxWidth = $width > 0 ? ' style="max-width:' . $width . 'px"' : '';
 
         if ($type === 'embed') {
-            return '<div class="cineframe cineframe--embed"' . $maxWidth . '>' . $source . '</div>';
+            $iframe = $this->cleanIframeEmbed($source);
+
+            if ($iframe === '') {
+                return '';
+            }
+
+            return '<div class="cineframe cineframe--embed"' . $maxWidth . '>' . $iframe . '</div>';
+        }
+
+        if ($type === 'video') {
+            $videoUrl = $this->cleanVideoUrl($source);
+
+            if ($videoUrl === '') {
+                return '';
+            }
+
+            return '<div class="cineframe cineframe--video"' . $maxWidth . '>'
+                . '<div class="cineframe__frame">'
+                . '<video src="' . htmlspecialchars($videoUrl, ENT_QUOTES) . '" controls preload="metadata"></video>'
+                . '</div></div>';
         }
 
         $embedUrl = '';
@@ -238,7 +257,35 @@ final class Cineframe extends CMSPlugin implements SubscriberInterface, Database
             return 'vimeo';
         }
 
-        return 'embed';
+        return 'video';
+    }
+
+    private function cleanVideoUrl(string $url): string
+    {
+        $url = trim($url);
+
+        if ($url === '') {
+            return '';
+        }
+
+        $scheme = parse_url($url, PHP_URL_SCHEME);
+
+        if ($scheme !== null && !\in_array(strtolower($scheme), ['http', 'https'], true)) {
+            return '';
+        }
+
+        return $url;
+    }
+
+    private function cleanIframeEmbed(string $source): string
+    {
+        $source = trim($source);
+
+        if (preg_match('~^<iframe\b[^>]*>.*?</iframe>$~is', $source) !== 1) {
+            return '';
+        }
+
+        return $source;
     }
 
     private function youtubeId(string $value): string

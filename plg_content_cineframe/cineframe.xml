@@ -6,7 +6,7 @@
     <copyright>(C) 2026 WebtechSolutions</copyright>
     <license>GNU General Public License version 2 or later</license>
     <version>1.0.0</version>
-    <description>CineFrame - εισάγει YouTube/Vimeo/embed βίντεο στα άρθρα με shortcode {cineframe videoid=44 width=540}. Υποστηρίζει legacy {avsplayer ...}.</description>
+    <description>CineFrame - εισάγει YouTube/Vimeo/video URL/iframe embed βίντεο στα άρθρα με shortcode {cineframe videoid=44 width=540}. Υποστηρίζει legacy {avsplayer ...}.</description>
     <namespace path="src">Webtech\Plugin\Content\Cineframe</namespace>
     <files>
         <folder plugin="cineframe">services</folder>

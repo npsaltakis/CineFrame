@@ -9,7 +9,7 @@
     <license>GNU General Public License version 2 or later</license>
     <version>1.0.0</version>
     <url>https://github.com/npsaltakis/CineFrame</url>
-    <description>CineFrame - video library component + content plugin (YouTube/Vimeo/embed) for Joomla 5 &amp; 6. Insert videos into any article with {cineframe videoid=N width=540}.</description>
+    <description>CineFrame - video library component + content plugin (YouTube/Vimeo/video URL/iframe embed) for Joomla 5 &amp; 6. Insert videos into any article with {cineframe videoid=N width=540}.</description>
     <files>
         <file type="component" id="com_cineframe">com_cineframe.zip</file>
         <file type="plugin" group="content" id="cineframe">plg_content_cineframe.zip</file>

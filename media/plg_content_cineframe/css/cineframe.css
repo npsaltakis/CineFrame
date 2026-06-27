@@ -17,7 +17,8 @@
     background: #000;
 }
 
-.cineframe__frame iframe {
+.cineframe__frame iframe,
+.cineframe__frame video {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -25,8 +26,15 @@
     border: 0;
 }
 
+.cineframe__frame video {
+    display: block;
+    object-fit: contain;
+    background: #000;
+}
+
 .cineframe--embed iframe,
-.cineframe--embed video {
+.cineframe--embed video,
+.cineframe--video video {
     width: 100%;
     border-radius: 8px;
     display: block;
@@ -127,11 +135,17 @@
     aspect-ratio: 16/9;
     background: #000;
 }
-.cf-video-embed iframe {
+.cf-video-embed iframe,
+.cf-video-embed video {
     width: 100%;
     height: 100%;
     border: 0;
     display: block;
+}
+
+.cf-video-embed video {
+    object-fit: contain;
+    background: #000;
 }
 .cf-video-title {
     font-size: .9rem;
