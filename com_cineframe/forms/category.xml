@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fieldset name="details">
+        <field name="id" type="hidden" />
+
+        <field
+            name="name"
+            type="text"
+            label="COM_CINEFRAME_FIELD_CAT_NAME_LABEL"
+            required="true"
+            size="60"
+        />
+
+        <field
+            name="ordering"
+            type="number"
+            label="COM_CINEFRAME_FIELD_ORDERING_LABEL"
+            default="0"
+            min="0"
+        />
+
+        <field
+            name="published"
+            type="list"
+            label="COM_CINEFRAME_FIELD_STATUS_LABEL"
+            default="1"
+        >
+            <option value="1">JPUBLISHED</option>
+            <option value="0">JUNPUBLISHED</option>
+        </field>
+    </fieldset>
+</form>

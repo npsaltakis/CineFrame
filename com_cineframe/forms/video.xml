@@ -13,6 +13,17 @@
         />
 
         <field
+            name="catid"
+            type="sql"
+            label="COM_CINEFRAME_FIELD_CATID_LABEL"
+            query="SELECT id AS value, name AS text FROM #__cineframe_categories WHERE published=1 ORDER BY ordering ASC, name ASC"
+            key_field="value"
+            value_field="text"
+            default="0"
+            first_option="COM_CINEFRAME_FIELD_CATID_NONE"
+        />
+
+        <field
             name="type"
             type="list"
             label="COM_CINEFRAME_FIELD_TYPE_LABEL"
@@ -32,6 +43,22 @@
             rows="5"
             cols="60"
             required="true"
+        />
+
+        <field
+            name="thumb"
+            type="text"
+            label="COM_CINEFRAME_FIELD_THUMB_LABEL"
+            description="COM_CINEFRAME_FIELD_THUMB_DESC"
+            size="80"
+        />
+
+        <field
+            name="description"
+            type="textarea"
+            label="COM_CINEFRAME_FIELD_DESCRIPTION_LABEL"
+            rows="4"
+            cols="60"
         />
 
         <field

@@ -22,8 +22,11 @@ HTMLHelper::_('behavior.formvalidator');
         <div class="col-lg-9">
             <fieldset class="adminform">
                 <?php echo $this->form->renderField('title'); ?>
+                <?php echo $this->form->renderField('catid'); ?>
                 <?php echo $this->form->renderField('type'); ?>
                 <?php echo $this->form->renderField('source'); ?>
+                <?php echo $this->form->renderField('thumb'); ?>
+                <?php echo $this->form->renderField('description'); ?>
                 <?php echo $this->form->renderField('width'); ?>
                 <?php echo $this->form->renderField('published'); ?>
             </fieldset>

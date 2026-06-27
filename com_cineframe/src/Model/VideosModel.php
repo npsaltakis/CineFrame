@@ -62,8 +62,12 @@ class VideosModel extends ListModel
         $db    = $this->getDatabase();
         $query = $db->getQuery(true);
 
-        $query->select('a.*')
-            ->from($db->quoteName('#__cineframe_videos', 'a'));
+        $query->select(['a.*', $db->quoteName('c.name', 'category_name')])
+            ->from($db->quoteName('#__cineframe_videos', 'a'))
+            ->leftJoin(
+                $db->quoteName('#__cineframe_categories', 'c') . ' ON ' .
+                $db->quoteName('c.id') . ' = ' . $db->quoteName('a.catid')
+            );
 
         // Filter by published state.
         $published = (string) $this->getState('filter.published');

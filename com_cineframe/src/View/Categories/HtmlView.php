@@ -8,20 +8,15 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-namespace Webtech\Component\Cineframe\Administrator\View\Videos;
+namespace Webtech\Component\Cineframe\Administrator\View\Categories;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
 use Joomla\CMS\Toolbar\ToolbarHelper;
 
-// phpcs:disable PSR1.Files.SideEffects
 \defined('_JEXEC') or die;
-// phpcs:enable PSR1.Files.SideEffects
 
-/**
- * Videos list view.
- */
 class HtmlView extends BaseHtmlView
 {
     protected $items;
@@ -45,15 +40,13 @@ class HtmlView extends BaseHtmlView
 
     protected function addToolbar(): void
     {
-        ToolbarHelper::title(Text::_('COM_CINEFRAME_VIDEOS_TITLE'), 'play');
+        ToolbarHelper::title(Text::_('COM_CINEFRAME_CATEGORIES_TITLE'), 'folder');
 
 $toolbar = Factory::getApplication()->getDocument()->getToolbar();
 
-        $toolbar->addNew('video.add');
-        $toolbar->publish('videos.publish')->listCheck(true);
-        $toolbar->unpublish('videos.unpublish')->listCheck(true);
-        $toolbar->delete('videos.delete')
-            ->message(Text::_('COM_CINEFRAME_CONFIRM_DELETE'))
+        $toolbar->addNew('category.add');
+        $toolbar->delete('categories.delete')
+            ->message(Text::_('COM_CINEFRAME_CONFIRM_DELETE_CAT'))
             ->listCheck(true);
     }
 }
