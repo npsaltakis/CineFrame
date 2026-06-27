@@ -11,20 +11,25 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Router\Route;
+use Joomla\CMS\Uri\Uri;
 
-$this->getDocument()->addStyleSheet(\Joomla\CMS\Uri\Uri::root(true) . '/media/plg_content_cineframe/css/cineframe.css');
+$cssUrl = Uri::root(true) . '/media/plg_content_cineframe/css/cineframe.css';
 ?>
-<div class="cf-category">
-    <?php if ($this->category) : ?>
-        <h2 class="cf-cat-title"><?php echo htmlspecialchars($this->category->name, ENT_QUOTES, 'UTF-8'); ?></h2>
-    <?php endif; ?>
+<link rel="stylesheet" href="<?php echo $cssUrl; ?>">
+<div class="cf-page">
+
+    <div class="cf-page-header">
+        <a class="cf-back-link" href="<?php echo Route::_('index.php?option=com_cineframe&view=categories'); ?>">&#8592; Βιντεοθήκη</a>
+        <?php if ($this->category) : ?>
+            <h1 class="cf-page-header__title"><?php echo htmlspecialchars($this->category->name, ENT_QUOTES, 'UTF-8'); ?></h1>
+        <?php endif; ?>
+    </div>
 
     <?php if (empty($this->videos)) : ?>
         <p class="cf-empty">Δεν υπάρχουν βίντεο σε αυτή την κατηγορία.</p>
     <?php else : ?>
         <div class="cf-video-grid">
             <?php foreach ($this->videos as $v) :
-                // Extract YouTube/Vimeo ID for thumbnail fallback
                 $thumb = $v->thumb;
                 if (!$thumb && $v->type === 'youtube') {
                     preg_match('/(?:v=|youtu\.be\/|embed\/)([a-zA-Z0-9_\-]{11})/', $v->source, $m);
@@ -32,67 +37,74 @@ $this->getDocument()->addStyleSheet(\Joomla\CMS\Uri\Uri::root(true) . '/media/pl
                         $thumb = 'https://img.youtube.com/vi/' . $m[1] . '/hqdefault.jpg';
                     }
                 }
+                if (!$thumb && $v->type === 'vimeo') {
+                    preg_match('/vimeo\.com\/(\d+)/', $v->source, $m);
+                    if (!empty($m[1])) {
+                        $thumb = 'https://vumbnail.com/' . $m[1] . '.jpg';
+                    }
+                }
             ?>
-                <div class="cf-video-card" data-id="<?php echo (int) $v->id; ?>">
-                    <div class="cf-thumb" onclick="cfPlay(<?php echo (int) $v->id; ?>, this)" style="cursor:pointer">
+                <div class="cf-video-card" id="cf-card-<?php echo (int) $v->id; ?>">
+                    <div class="cf-thumb" onclick="cfPlay(<?php echo (int) $v->id; ?>, this)">
                         <?php if ($thumb) : ?>
-                            <img src="<?php echo htmlspecialchars($thumb, ENT_QUOTES, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars($v->title, ENT_QUOTES, 'UTF-8'); ?>" loading="lazy">
+                            <img src="<?php echo htmlspecialchars($thumb, ENT_QUOTES, 'UTF-8'); ?>"
+                                 alt="<?php echo htmlspecialchars($v->title, ENT_QUOTES, 'UTF-8'); ?>"
+                                 loading="lazy">
                         <?php else : ?>
-                            <div class="cf-no-thumb"><span class="icon-play"></span></div>
+                            <div class="cf-no-thumb">&#127910;</div>
                         <?php endif; ?>
-                        <span class="cf-play-btn">&#9654;</span>
+                        <div class="cf-play-overlay"><span class="cf-play-btn">&#9654;</span></div>
                     </div>
-                    <div class="cf-video-embed" id="cf-embed-<?php echo (int) $v->id; ?>" style="display:none"></div>
-                    <h3 class="cf-video-title"><?php echo htmlspecialchars($v->title, ENT_QUOTES, 'UTF-8'); ?></h3>
-                    <?php if ($v->description) : ?>
-                        <p class="cf-video-desc"><?php echo htmlspecialchars($v->description, ENT_QUOTES, 'UTF-8'); ?></p>
-                    <?php endif; ?>
+                    <div class="cf-video-embed" id="cf-embed-<?php echo (int) $v->id; ?>"></div>
+                    <div class="cf-video-info">
+                        <h3 class="cf-video-title"><?php echo htmlspecialchars($v->title, ENT_QUOTES, 'UTF-8'); ?></h3>
+                        <?php if ($v->description) : ?>
+                            <p class="cf-video-desc"><?php echo htmlspecialchars($v->description, ENT_QUOTES, 'UTF-8'); ?></p>
+                        <?php endif; ?>
+                    </div>
                 </div>
             <?php endforeach; ?>
         </div>
 
         <script>
         var cfVideos = <?php echo json_encode(array_map(function($v) {
-            return ['id' => (int)$v->id, 'type' => $v->type, 'source' => $v->source, 'width' => (int)$v->width ?: 640];
+            return [
+                'id'     => (int) $v->id,
+                'type'   => $v->type,
+                'source' => $v->source,
+                'width'  => (int) $v->width ?: 640
+            ];
         }, $this->videos)); ?>;
-
-        function cfAttr(value) {
-            return String(value)
-                .replace(/&/g, '&amp;')
-                .replace(/"/g, '&quot;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;');
-        }
-
-        function cfIframe(value) {
-            var html = String(value).trim();
-
-            return /<iframe\b/i.test(html) ? html : '';
-        }
 
         function cfPlay(id, thumbEl) {
             var v = cfVideos.find(function(x){ return x.id === id; });
             if (!v) return;
+
+            var card  = document.getElementById('cf-card-' + id);
             var embed = document.getElementById('cf-embed-' + id);
-            var src = v.source;
-            var html = '';
+            var html  = '';
 
             if (v.type === 'youtube') {
-                var yid = src.match(/(?:v=|youtu\.be\/|embed\/)([a-zA-Z0-9_\-]{11})/);
-                if (yid) html = '<iframe width="100%" height="315" src="https://www.youtube.com/embed/' + yid[1] + '?autoplay=1" frameborder="0" allowfullscreen allow="autoplay"></iframe>';
+                var yid = v.source.match(/(?:v=|youtu\.be\/|embed\/)([a-zA-Z0-9_\-]{11})/);
+                if (yid) {
+                    html = '<div class="cf-embed-wrap"><iframe src="https://www.youtube.com/embed/' + yid[1] + '?autoplay=1&rel=0" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe></div>';
+                }
             } else if (v.type === 'vimeo') {
-                var vid = src.match(/vimeo\.com\/(\d+)/);
-                if (vid) html = '<iframe width="100%" height="315" src="https://player.vimeo.com/video/' + vid[1] + '?autoplay=1" frameborder="0" allowfullscreen></iframe>';
-            } else if (v.type === 'video') {
-                html = '<video width="100%" height="315" src="' + cfAttr(src) + '" controls autoplay preload="metadata"></video>';
+                var vid = v.source.match(/vimeo\.com\/(\d+)/);
+                if (vid) {
+                    html = '<div class="cf-embed-wrap"><iframe src="https://player.vimeo.com/video/' + vid[1] + '?autoplay=1" frameborder="0" allowfullscreen></iframe></div>';
+                }
             } else {
-                html = cfIframe(src);
+                // embed type: wrap raw HTML in responsive container if it's not already
+                html = '<div class="cf-embed-raw">' + v.source + '</div>';
             }
 
             if (html) {
-                thumbEl.closest('.cf-video-card').querySelector('.cf-thumb').style.display = 'none';
+                card.querySelector('.cf-thumb').style.display = 'none';
                 embed.innerHTML = html;
                 embed.style.display = 'block';
+                // Smooth scroll to card
+                card.scrollIntoView({behavior: 'smooth', block: 'nearest'});
             }
         }
         </script>
