@@ -1,0 +1,54 @@
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - button "Keyboard Navigation" [ref=e4] [cursor=pointer]
+    - generic [ref=e8]:
+      - link "Koyinta Organization" [ref=e10] [cursor=pointer]:
+        - /url: http://localhost/koyinta_sites/koyinta-organization.com/
+        - generic [ref=e12]: 
+        - generic [ref=e13]: Koyinta Organization
+      - text:  
+  - generic [ref=e14]:
+    - main [ref=e17]:
+      - generic [ref=e18]:
+        - heading "Joomla Administrator Login" [level=1] [ref=e20]
+        - group "Login Form" [ref=e22]:
+          - generic [ref=e23]: Login Form
+          - generic [ref=e24]:
+            - generic [ref=e25]: Username
+            - textbox "Username" [active] [ref=e27]: nickpsal
+          - generic [ref=e28]:
+            - generic [ref=e29]: Password
+            - generic [ref=e30]:
+              - textbox "Password" [ref=e31]: NZ98flbright2026!@34
+              - button "Show Password" [ref=e32] [cursor=pointer]:
+                - generic [ref=e33]: 
+                - generic [ref=e34]: Show Password
+          - generic [ref=e35]:
+            - generic [ref=e36]:
+              - generic [ref=e37]: Language
+              - combobox "Language" [ref=e38] [cursor=pointer]:
+                - option "Language - Default" [selected]
+                - option "Greek (el-GR)"
+                - option "English (United Kingdom)"
+            - button "Log in" [ref=e40] [cursor=pointer]
+        - link "Forgot your login details?" [ref=e43] [cursor=pointer]:
+          - /url: https://guide.joomla.org/user-manual/users/users-admin-password-recovery
+    - complementary "Help and support" [ref=e44]:
+      - heading "Help and support" [level=2] [ref=e45]
+      - generic [ref=e46]:
+        - paragraph [ref=e47]: Koyinta Organization
+        - paragraph [ref=e48]: Joomla Administrator Login
+      - generic [ref=e51]:
+        - heading "Need Support?" [level=3] [ref=e52]
+        - generic [ref=e54]:
+          - paragraph [ref=e55]: "You can find help here:"
+          - list [ref=e56]:
+            - listitem [ref=e57]:
+              - link "Joomla! Support Forum" [ref=e58] [cursor=pointer]:
+                - /url: https://forum.joomla.org/
+            - listitem [ref=e59]:
+              - link "Joomla! Documentation" [ref=e60] [cursor=pointer]:
+                - /url: https://docs.joomla.org/
+            - listitem [ref=e61]:
+              - link "Joomla! News" [ref=e62] [cursor=pointer]:
+                - /url: https://www.joomla.org/announcements.html

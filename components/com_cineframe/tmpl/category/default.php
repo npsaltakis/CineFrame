@@ -13,7 +13,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 
-$cssUrl = Uri::root(true) . '/media/plg_content_cineframe/css/cineframe.css?v=1.2.1';
+$cssUrl = Uri::root(true) . '/media/plg_content_cineframe/css/cineframe.css?v=1.2.2';
 
 // ID extraction aligned with plg_content_cineframe: accepts bare IDs and all URL forms.
 $cfYoutubeId = function (string $source): string {

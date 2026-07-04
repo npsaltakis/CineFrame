@@ -30,6 +30,7 @@ class VideosModel extends ListModel
                 'id', 'a.id',
                 'title', 'a.title',
                 'catid', 'a.catid',
+                'category_name', 'c.name',
                 'type', 'a.type',
                 'published', 'a.published',
                 'ordering', 'a.ordering',

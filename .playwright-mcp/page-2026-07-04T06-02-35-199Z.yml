@@ -1,0 +1,134 @@
+- generic [active] [ref=f5e1]:
+  - banner [ref=f5e2]:
+    - button "Keyboard Navigation" [ref=f5e4] [cursor=pointer]
+    - generic [ref=f5e5]:
+      - generic [ref=f5e6]:
+        - link "Back to Dashboard" [ref=f5e8] [cursor=pointer]:
+          - /url: /koyinta_sites/koyinta-organization.com/administrator/index.php
+          - img "Back to Dashboard" [ref=f5e9]
+        - 'heading "Extensions: Update" [level=1] [ref=f5e12]':
+          - generic [ref=f5e13]: 
+          - text: "Extensions: Update"
+      - generic [ref=f5e14]:
+        - generic [ref=f5e16]:
+          - button "Take a Tour" [ref=f5e17] [cursor=pointer]:
+            - generic [ref=f5e19]: 
+            - generic [ref=f5e20]: Take a Tour
+            - generic [ref=f5e21]: 
+          - text:       
+        - generic [ref=f5e24]:
+          - generic [ref=f5e25]: 
+          - generic [ref=f5e26]: The currently installed Joomla! version is "‎6.1.1"
+          - text: ‎6.1.1
+        - link "1 Post Installation Messages" [ref=f5e28] [cursor=pointer]:
+          - /url: /koyinta_sites/koyinta-organization.com/administrator/index.php?option=com_postinstall&eid=700
+          - generic [ref=f5e30]:
+            - generic [ref=f5e31]: 
+            - generic [ref=f5e32]: "1"
+          - generic [ref=f5e33]: Post Installation Messages
+        - link "Koyinta Organization" [ref=f5e35] [cursor=pointer]:
+          - /url: http://localhost/koyinta_sites/koyinta-organization.com/
+          - generic [ref=f5e37]: 
+          - generic [ref=f5e38]: Koyinta Organization
+        - generic [ref=f5e40]:
+          - button "User Menu" [ref=f5e41] [cursor=pointer]:
+            - generic [ref=f5e43]: 
+            - generic [ref=f5e44]: User Menu
+            - generic [ref=f5e45]: 
+          - text:      
+        - text:                     
+  - generic [ref=f5e46]:
+    - generic [ref=f5e48]:
+      - link "Toggle Menu" [ref=f5e50] [cursor=pointer]:
+        - /url: "#"
+        - generic [ref=f5e51]: 
+        - generic [ref=f5e52]: Toggle Menu
+      - navigation "Main Menu" [ref=f5e53]:
+        - list [ref=f5e54]:
+          - listitem [ref=f5e55]:
+            - link "Home Dashboard" [ref=f5e56] [cursor=pointer]:
+              - /url: index.php
+              - generic [ref=f5e57]: 
+              - generic [ref=f5e58]: Home Dashboard
+          - listitem [ref=f5e59]:
+            - link "Content" [ref=f5e60] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f5e61]: 
+              - generic [ref=f5e62]: Content
+              - text: 
+            - link "Content Dashboard" [ref=f5e64] [cursor=pointer]:
+              - /url: /koyinta_sites/koyinta-organization.com/administrator/index.php?option=com_cpanel&view=cpanel&dashboard=content
+              - img [ref=f5e66]
+              - generic [ref=f5e67]: Content Dashboard
+            - text: + + + +
+          - listitem [ref=f5e68]:
+            - link "Menus" [ref=f5e69] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f5e70]: 
+              - generic [ref=f5e71]: Menus
+              - text: 
+            - link "Menus Dashboard" [ref=f5e73] [cursor=pointer]:
+              - /url: /koyinta_sites/koyinta-organization.com/administrator/index.php?option=com_cpanel&view=cpanel&dashboard=menus
+              - img [ref=f5e75]
+              - generic [ref=f5e76]: Menus Dashboard
+            - text:  + + +
+          - listitem [ref=f5e77]:
+            - link "Components" [ref=f5e78] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f5e79]: 
+              - generic [ref=f5e80]: Components
+              - text: 
+            - link "Components Dashboard" [ref=f5e82] [cursor=pointer]:
+              - /url: /koyinta_sites/koyinta-organization.com/administrator/index.php?option=com_cpanel&view=cpanel&dashboard=components
+              - img [ref=f5e84]
+              - generic [ref=f5e85]: Components Dashboard
+            - text:   + +         
+          - listitem [ref=f5e86]:
+            - link "Users" [ref=f5e87] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f5e88]: 
+              - generic [ref=f5e89]: Users
+              - text: 
+            - link "Users Dashboard" [ref=f5e91] [cursor=pointer]:
+              - /url: /koyinta_sites/koyinta-organization.com/administrator/index.php?option=com_cpanel&view=cpanel&dashboard=users
+              - img [ref=f5e93]
+              - generic [ref=f5e94]: Users Dashboard
+            - text: +   +
+          - listitem [ref=f5e95]:
+            - link "System" [ref=f5e96] [cursor=pointer]:
+              - /url: index.php?option=com_cpanel&view=cpanel&dashboard=system
+              - generic [ref=f5e97]: 
+              - generic [ref=f5e98]: System
+          - listitem [ref=f5e99]:
+            - link "Help" [ref=f5e100] [cursor=pointer]:
+              - /url: index.php?option=com_cpanel&view=cpanel&dashboard=help
+              - generic [ref=f5e101]: 
+              - generic [ref=f5e102]: Help
+    - generic [ref=f5e103]:
+      - navigation "Toolbar" [ref=f5e107]:
+        - toolbar [ref=f5e108]:
+          - button "Check For Updates" [ref=f5e110] [cursor=pointer]:
+            - generic [ref=f5e111]: 
+            - text: Check For Updates
+          - link "Manage Extensions" [ref=f5e113] [cursor=pointer]:
+            - /url: index.php?option=com_installer&view=manage
+            - generic [ref=f5e114]: 
+            - text: Manage Extensions
+          - link "Options" [ref=f5e116] [cursor=pointer]:
+            - /url: index.php?option=com_config&view=component&component=com_installer&path=&return=aHR0cDovL2xvY2FsaG9zdC9rb3lpbnRhX3NpdGVzL2tveWludGEtb3JnYW5pemF0aW9uLmNvbS9hZG1pbmlzdHJhdG9yL2luZGV4LnBocD9vcHRpb249Y29tX2luc3RhbGxlciZ2aWV3PXVwZGF0ZQ%3D%3D
+            - generic [ref=f5e117]: 
+            - text: Options
+          - button "Help" [ref=f5e119] [cursor=pointer]:
+            - generic [ref=f5e120]: "?"
+            - text: Help
+      - main [ref=f5e124]:
+        - generic [ref=f5e126]:
+          - generic [ref=f5e127]: 
+          - heading "Check For Updates" [level=1] [ref=f5e128]
+          - generic [ref=f5e129]:
+            - paragraph [ref=f5e130]: You currently have no pending updates to apply. Check regularly for new updates to keep your site up to date and secure.
+            - generic [ref=f5e131]:
+              - link "Check For Updates" [ref=f5e132] [cursor=pointer]:
+                - /url: /koyinta_sites/koyinta-organization.com/administrator/index.php?option=com_installer&task=update.find&3e1a1462f7a10bb8eba9b77faf0917de=1
+              - link "Learn More" [ref=f5e133] [cursor=pointer]:
+                - /url: https://docs.joomla.org/Special:MyLanguage/Help5.x:Extensions:_Update

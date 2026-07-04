@@ -7,7 +7,7 @@
     <creationDate>2026-07</creationDate>
     <copyright>(C) 2026 WebtechSolutions</copyright>
     <license>GNU General Public License version 2 or later</license>
-    <version>1.2.1</version>
+    <version>1.2.2</version>
     <url>https://github.com/npsaltakis/CineFrame</url>
     <description>CineFrame - video library component + content plugin (YouTube/Vimeo/video URL/iframe embed) for Joomla 5 &amp; 6. Insert videos into any article with {cineframe videoid=N width=540}.</description>
     <files>

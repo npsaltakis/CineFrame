@@ -16,8 +16,10 @@ use Joomla\CMS\Router\Route;
 
 HTMLHelper::_('behavior.multiselect');
 
-$search = (string) $this->state->get('filter.search');
-$catid  = (string) $this->state->get('filter.catid');
+$search    = (string) $this->state->get('filter.search');
+$catid     = (string) $this->state->get('filter.catid');
+$listOrder = $this->escape($this->state->get('list.ordering'));
+$listDirn  = $this->escape($this->state->get('list.direction'));
 $categoryOptions = array_merge(
     [HTMLHelper::_('select.option', '', Text::_('COM_CINEFRAME_FILTER_CATEGORY_ALL'))],
     $this->categoryOptions ?: []
@@ -83,12 +85,22 @@ $categoryOptions = array_merge(
                                 <td class="w-1 text-center">
                                     <?php echo HTMLHelper::_('grid.checkall'); ?>
                                 </td>
-                                <th class="w-1 text-center"><?php echo Text::_('COM_CINEFRAME_HEADING_ID'); ?></th>
-                                <th><?php echo Text::_('COM_CINEFRAME_HEADING_TITLE'); ?></th>
-                                <th class="w-15"><?php echo Text::_('COM_CINEFRAME_HEADING_CATEGORY'); ?></th>
-                                <th class="w-10"><?php echo Text::_('COM_CINEFRAME_HEADING_TYPE'); ?></th>
+                                <th class="w-1 text-center">
+                                    <?php echo HTMLHelper::_('grid.sort', 'COM_CINEFRAME_HEADING_ID', 'a.id', $listDirn, $listOrder); ?>
+                                </th>
+                                <th>
+                                    <?php echo HTMLHelper::_('grid.sort', 'COM_CINEFRAME_HEADING_TITLE', 'a.title', $listDirn, $listOrder); ?>
+                                </th>
+                                <th class="w-15">
+                                    <?php echo HTMLHelper::_('grid.sort', 'COM_CINEFRAME_HEADING_CATEGORY', 'c.name', $listDirn, $listOrder); ?>
+                                </th>
+                                <th class="w-10">
+                                    <?php echo HTMLHelper::_('grid.sort', 'COM_CINEFRAME_HEADING_TYPE', 'a.type', $listDirn, $listOrder); ?>
+                                </th>
                                 <th><?php echo Text::_('COM_CINEFRAME_HEADING_SHORTCODE'); ?></th>
-                                <th class="w-10 text-center"><?php echo Text::_('COM_CINEFRAME_HEADING_STATUS'); ?></th>
+                                <th class="w-10 text-center">
+                                    <?php echo HTMLHelper::_('grid.sort', 'COM_CINEFRAME_HEADING_STATUS', 'a.published', $listDirn, $listOrder); ?>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -123,6 +135,8 @@ $categoryOptions = array_merge(
 
                 <input type="hidden" name="task" value="">
                 <input type="hidden" name="boxchecked" value="0">
+                <input type="hidden" name="filter_order" value="<?php echo $listOrder; ?>">
+                <input type="hidden" name="filter_order_Dir" value="<?php echo $listDirn; ?>">
                 <?php echo HTMLHelper::_('form.token'); ?>
             </div>
         </div>

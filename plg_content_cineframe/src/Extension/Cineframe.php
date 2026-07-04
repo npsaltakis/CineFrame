@@ -203,7 +203,7 @@ final class Cineframe extends CMSPlugin implements SubscriberInterface, Database
 
         $app->getDocument()->addStyleSheet(
             Uri::root(true) . '/media/plg_content_cineframe/css/cineframe.css',
-            ['version' => '1.2.1']
+            ['version' => '1.2.2']
         );
     }
 

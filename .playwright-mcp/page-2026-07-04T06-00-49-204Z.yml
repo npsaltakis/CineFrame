@@ -1,0 +1,135 @@
+- generic [active] [ref=f2e1]:
+  - banner [ref=f2e2]:
+    - button "Keyboard Navigation" [ref=f2e4] [cursor=pointer]
+    - generic [ref=f2e5]:
+      - generic [ref=f2e6]:
+        - link "Back to Dashboard" [ref=f2e8] [cursor=pointer]:
+          - /url: /koyinta_sites/koyinta-organization.com/administrator/index.php
+          - img "Back to Dashboard" [ref=f2e9]
+        - 'heading "Extensions: Install" [level=1] [ref=f2e12]':
+          - generic [ref=f2e13]: 
+          - text: "Extensions: Install"
+      - generic [ref=f2e14]:
+        - generic [ref=f2e16]:
+          - button "Take a Tour" [ref=f2e17] [cursor=pointer]:
+            - generic [ref=f2e19]: 
+            - generic [ref=f2e20]: Take a Tour
+            - generic [ref=f2e21]: 
+          - text:       
+        - generic [ref=f2e24]:
+          - generic [ref=f2e25]: 
+          - generic [ref=f2e26]: The currently installed Joomla! version is "‎6.1.1"
+          - text: ‎6.1.1
+        - link "1 Post Installation Messages" [ref=f2e28] [cursor=pointer]:
+          - /url: /koyinta_sites/koyinta-organization.com/administrator/index.php?option=com_postinstall&eid=700
+          - generic [ref=f2e30]:
+            - generic [ref=f2e31]: 
+            - generic [ref=f2e32]: "1"
+          - generic [ref=f2e33]: Post Installation Messages
+        - link "Koyinta Organization" [ref=f2e35] [cursor=pointer]:
+          - /url: http://localhost/koyinta_sites/koyinta-organization.com/
+          - generic [ref=f2e37]: 
+          - generic [ref=f2e38]: Koyinta Organization
+        - generic [ref=f2e40]:
+          - button "User Menu" [ref=f2e41] [cursor=pointer]:
+            - generic [ref=f2e43]: 
+            - generic [ref=f2e44]: User Menu
+            - generic [ref=f2e45]: 
+          - text:      
+        - text:                     
+  - generic [ref=f2e46]:
+    - generic [ref=f2e48]:
+      - link "Toggle Menu" [ref=f2e50] [cursor=pointer]:
+        - /url: "#"
+        - generic [ref=f2e51]: 
+        - generic [ref=f2e52]: Toggle Menu
+      - navigation "Main Menu" [ref=f2e53]:
+        - list [ref=f2e54]:
+          - listitem [ref=f2e55]:
+            - link "Home Dashboard" [ref=f2e56] [cursor=pointer]:
+              - /url: index.php
+              - generic [ref=f2e57]: 
+              - generic [ref=f2e58]: Home Dashboard
+          - listitem [ref=f2e59]:
+            - link "Content" [ref=f2e60] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f2e61]: 
+              - generic [ref=f2e62]: Content
+              - text: 
+            - link "Content Dashboard" [ref=f2e64] [cursor=pointer]:
+              - /url: /koyinta_sites/koyinta-organization.com/administrator/index.php?option=com_cpanel&view=cpanel&dashboard=content
+              - img [ref=f2e66]
+              - generic [ref=f2e67]: Content Dashboard
+            - text: + + + +
+          - listitem [ref=f2e68]:
+            - link "Menus" [ref=f2e69] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f2e70]: 
+              - generic [ref=f2e71]: Menus
+              - text: 
+            - link "Menus Dashboard" [ref=f2e73] [cursor=pointer]:
+              - /url: /koyinta_sites/koyinta-organization.com/administrator/index.php?option=com_cpanel&view=cpanel&dashboard=menus
+              - img [ref=f2e75]
+              - generic [ref=f2e76]: Menus Dashboard
+            - text:  + + +
+          - listitem [ref=f2e77]:
+            - link "Components" [ref=f2e78] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f2e79]: 
+              - generic [ref=f2e80]: Components
+              - text: 
+            - link "Components Dashboard" [ref=f2e82] [cursor=pointer]:
+              - /url: /koyinta_sites/koyinta-organization.com/administrator/index.php?option=com_cpanel&view=cpanel&dashboard=components
+              - img [ref=f2e84]
+              - generic [ref=f2e85]: Components Dashboard
+            - text:   + +        
+          - listitem [ref=f2e86]:
+            - link "Users" [ref=f2e87] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=f2e88]: 
+              - generic [ref=f2e89]: Users
+              - text: 
+            - link "Users Dashboard" [ref=f2e91] [cursor=pointer]:
+              - /url: /koyinta_sites/koyinta-organization.com/administrator/index.php?option=com_cpanel&view=cpanel&dashboard=users
+              - img [ref=f2e93]
+              - generic [ref=f2e94]: Users Dashboard
+            - text: +   +
+          - listitem [ref=f2e95]:
+            - link "System" [ref=f2e96] [cursor=pointer]:
+              - /url: index.php?option=com_cpanel&view=cpanel&dashboard=system
+              - generic [ref=f2e97]: 
+              - generic [ref=f2e98]: System
+          - listitem [ref=f2e99]:
+            - link "Help" [ref=f2e100] [cursor=pointer]:
+              - /url: index.php?option=com_cpanel&view=cpanel&dashboard=help
+              - generic [ref=f2e101]: 
+              - generic [ref=f2e102]: Help
+    - generic [ref=f2e103]:
+      - navigation "Toolbar" [ref=f2e107]:
+        - toolbar [ref=f2e108]:
+          - link "Manage Extensions" [ref=f2e110] [cursor=pointer]:
+            - /url: index.php?option=com_installer&view=manage
+            - generic [ref=f2e111]: 
+            - text: Manage Extensions
+          - link "Options" [ref=f2e113] [cursor=pointer]:
+            - /url: index.php?option=com_config&view=component&component=com_installer&path=&return=aHR0cDovL2xvY2FsaG9zdC9rb3lpbnRhX3NpdGVzL2tveWludGEtb3JnYW5pemF0aW9uLmNvbS9hZG1pbmlzdHJhdG9yL2luZGV4LnBocD9vcHRpb249Y29tX2luc3RhbGxlciZ2aWV3PWluc3RhbGw%3D
+            - generic [ref=f2e114]: 
+            - text: Options
+          - button "Help" [ref=f2e116] [cursor=pointer]:
+            - generic [ref=f2e117]: "?"
+            - text: Help
+      - main [ref=f2e121]:
+        - generic [ref=f2e127]:
+          - tablist [ref=f2e128]:
+            - tab "Install from Folder" [selected] [ref=f2e129] [cursor=pointer]
+            - tab "Upload Package File" [ref=f2e130] [cursor=pointer]
+            - tab "Install from URL" [ref=f2e131] [cursor=pointer]
+            - tab "Install from Web" [ref=f2e132] [cursor=pointer]
+          - tabpanel [ref=f2e133]:
+            - group "Install from Folder" [ref=f2e134]:
+              - generic [ref=f2e135]: Install from Folder
+              - generic [ref=f2e136]:
+                - generic [ref=f2e137]: Install from Folder
+                - textbox "Install from Folder" [ref=f2e139]: D:/wamp64/www/koyinta_sites/koyinta-organization.com/tmp
+              - button "Check & Install" [ref=f2e142] [cursor=pointer]
+          - text:  
