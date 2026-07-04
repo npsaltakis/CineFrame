@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<updates>
+    <update>
+        <name>CineFrame</name>
+        <description>CineFrame - video library component + content plugin for Joomla 5</description>
+        <element>pkg_cineframe</element>
+        <type>package</type>
+        <version>1.2.1</version>
+        <infourl title="CineFrame">https://github.com/npsaltakis/CineFrame</infourl>
+        <downloads>
+            <downloadurl type="full" format="zip">https://github.com/npsaltakis/CineFrame/releases/download/v1.2.1/pkg_cineframe_v1.2.1.zip</downloadurl>
+        </downloads>
+        <maintainer>WebtechSolutions</maintainer>
+        <maintainerurl>https://github.com/npsaltakis/CineFrame</maintainerurl>
+        <targetplatform name="joomla" version="5\.[0-9]+" />
+    </update>
+    <update>
+        <name>CineFrame</name>
+        <description>CineFrame - video library component + content plugin for Joomla 6</description>
+        <element>pkg_cineframe</element>
+        <type>package</type>
+        <version>1.2.1</version>
+        <infourl title="CineFrame">https://github.com/npsaltakis/CineFrame</infourl>
+        <downloads>
+            <downloadurl type="full" format="zip">https://github.com/npsaltakis/CineFrame/releases/download/v1.2.1/pkg_cineframe_v1.2.1.zip</downloadurl>
+        </downloads>
+        <maintainer>WebtechSolutions</maintainer>
+        <maintainerurl>https://github.com/npsaltakis/CineFrame</maintainerurl>
+        <targetplatform name="joomla" version="6\.[0-9]+" />
+    </update>
+</updates>

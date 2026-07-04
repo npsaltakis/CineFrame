@@ -14,4 +14,7 @@
         <file type="component" id="com_cineframe">com_cineframe.zip</file>
         <file type="plugin" group="content" id="cineframe">plg_content_cineframe.zip</file>
     </files>
+    <updateservers>
+        <server type="extension" priority="1" name="CineFrame Updates">https://raw.githubusercontent.com/npsaltakis/CineFrame/main/updates/pkg_cineframe_update.xml</server>
+    </updateservers>
 </extension>
