@@ -2,10 +2,10 @@
 <extension type="plugin" group="content" method="upgrade">
     <name>plg_content_cineframe</name>
     <author>WebtechSolutions</author>
-    <creationDate>2026-06</creationDate>
+    <creationDate>2026-07</creationDate>
     <copyright>(C) 2026 WebtechSolutions</copyright>
     <license>GNU General Public License version 2 or later</license>
-    <version>1.0.0</version>
+    <version>1.2.1</version>
     <description>CineFrame - εισάγει YouTube/Vimeo/video URL/iframe embed βίντεο στα άρθρα με shortcode {cineframe videoid=44 width=540}. Υποστηρίζει legacy {avsplayer ...}.</description>
     <namespace path="src">Webtech\Plugin\Content\Cineframe</namespace>
     <files>

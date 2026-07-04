@@ -13,7 +13,36 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 
-$cssUrl = Uri::root(true) . '/media/plg_content_cineframe/css/cineframe.css';
+$cssUrl = Uri::root(true) . '/media/plg_content_cineframe/css/cineframe.css?v=1.2.1';
+
+// ID extraction aligned with plg_content_cineframe: accepts bare IDs and all URL forms.
+$cfYoutubeId = function (string $source): string {
+    $source = trim($source);
+
+    if (preg_match('/^[A-Za-z0-9_-]{11}$/', $source)) {
+        return $source;
+    }
+
+    if (preg_match('~(?:youtube\.com/(?:watch\?(?:.*&)?v=|embed/|shorts/|v/)|youtu\.be/)([A-Za-z0-9_-]{11})~i', $source, $m)) {
+        return $m[1];
+    }
+
+    return '';
+};
+
+$cfVimeoId = function (string $source): string {
+    $source = trim($source);
+
+    if (preg_match('/^\d+$/', $source)) {
+        return $source;
+    }
+
+    if (preg_match('~vimeo\.com/(?:video/|channels/[^/]+/|groups/[^/]+/videos/)?(\d+)~i', $source, $m)) {
+        return $m[1];
+    }
+
+    return '';
+};
 ?>
 <link rel="stylesheet" href="<?php echo $cssUrl; ?>">
 
@@ -45,15 +74,15 @@ $cssUrl = Uri::root(true) . '/media/plg_content_cineframe/css/cineframe.css';
             <?php foreach ($this->videos as $v) :
                 $thumb = $v->thumb;
                 if (!$thumb && $v->type === 'youtube') {
-                    preg_match('/(?:v=|youtu\.be\/|embed\/)([a-zA-Z0-9_\-]{11})/', $v->source, $m);
-                    if (!empty($m[1])) {
-                        $thumb = 'https://img.youtube.com/vi/' . $m[1] . '/hqdefault.jpg';
+                    $ytId = $cfYoutubeId($v->source);
+                    if ($ytId !== '') {
+                        $thumb = 'https://img.youtube.com/vi/' . $ytId . '/hqdefault.jpg';
                     }
                 }
                 if (!$thumb && $v->type === 'vimeo') {
-                    preg_match('/vimeo\.com\/(\d+)/', $v->source, $m);
-                    if (!empty($m[1])) {
-                        $thumb = 'https://vumbnail.com/' . $m[1] . '.jpg';
+                    $vmId = $cfVimeoId($v->source);
+                    if ($vmId !== '') {
+                        $thumb = 'https://vumbnail.com/' . $vmId . '.jpg';
                     }
                 }
             ?>
@@ -89,17 +118,32 @@ $cssUrl = Uri::root(true) . '/media/plg_content_cineframe/css/cineframe.css';
             ];
         }, $this->videos)); ?>;
 
+        // ID extraction aligned with plg_content_cineframe: accepts bare IDs and all URL forms.
+        function cfYoutubeId(source) {
+            source = source.trim();
+            if (/^[A-Za-z0-9_-]{11}$/.test(source)) return source;
+            var m = source.match(/(?:youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|v\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/i);
+            return m ? m[1] : '';
+        }
+
+        function cfVimeoId(source) {
+            source = source.trim();
+            if (/^\d+$/.test(source)) return source;
+            var m = source.match(/vimeo\.com\/(?:video\/|channels\/[^\/]+\/|groups\/[^\/]+\/videos\/)?(\d+)/i);
+            return m ? m[1] : '';
+        }
+
         function cfPlay(id) {
             var v = cfVideos.find(function(x){ return x.id === id; });
             if (!v) return;
 
             var html = '';
             if (v.type === 'youtube') {
-                var yid = v.source.match(/(?:v=|youtu\.be\/|embed\/)([a-zA-Z0-9_\-]{11})/);
-                if (yid) html = '<iframe src="https://www.youtube.com/embed/' + yid[1] + '?autoplay=1&rel=0" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>';
+                var yid = cfYoutubeId(v.source);
+                if (yid) html = '<iframe src="https://www.youtube-nocookie.com/embed/' + yid + '?autoplay=1&rel=0" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>';
             } else if (v.type === 'vimeo') {
-                var vid = v.source.match(/vimeo\.com\/(\d+)/);
-                if (vid) html = '<iframe src="https://player.vimeo.com/video/' + vid[1] + '?autoplay=1" frameborder="0" allowfullscreen></iframe>';
+                var vid = cfVimeoId(v.source);
+                if (vid) html = '<iframe src="https://player.vimeo.com/video/' + vid + '?autoplay=1" frameborder="0" allowfullscreen></iframe>';
             } else if (v.type === 'video') {
                 html = '<video src="' + v.source + '" controls autoplay></video>';
             } else {
