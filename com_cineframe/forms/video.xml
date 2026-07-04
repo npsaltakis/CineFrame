@@ -57,10 +57,11 @@
 
         <field
             name="description"
-            type="textarea"
+            type="editor"
             label="COM_CINEFRAME_FIELD_DESCRIPTION_LABEL"
-            rows="4"
-            cols="60"
+            filter="safehtml"
+            buttons="false"
+            rows="8"
         />
 
         <field

@@ -13,7 +13,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 
-$cssUrl = Uri::root(true) . '/media/plg_content_cineframe/css/cineframe.css?v=1.2.2';
+$cssUrl = Uri::root(true) . '/media/plg_content_cineframe/css/cineframe.css?v=1.2.3';
 
 // ID extraction aligned with plg_content_cineframe: accepts bare IDs and all URL forms.
 $cfYoutubeId = function (string $source): string {
@@ -53,7 +53,7 @@ $cfVimeoId = function (string $source): string {
         <div class="cf-modal__player" id="cf-modal-player"></div>
         <div class="cf-modal__info">
             <h2 class="cf-modal__title" id="cf-modal-title"></h2>
-            <p class="cf-modal__desc" id="cf-modal-desc"></p>
+            <div class="cf-modal__desc" id="cf-modal-desc"></div>
         </div>
     </div>
 </div>
@@ -99,8 +99,9 @@ $cfVimeoId = function (string $source): string {
                     </div>
                     <div class="cf-video-info">
                         <h3 class="cf-video-title"><?php echo htmlspecialchars($v->title, ENT_QUOTES, 'UTF-8'); ?></h3>
-                        <?php if ($v->description) : ?>
-                            <p class="cf-video-desc"><?php echo htmlspecialchars($v->description, ENT_QUOTES, 'UTF-8'); ?></p>
+                        <?php $descPreview = trim(strip_tags($v->description ?? '')); ?>
+                        <?php if ($descPreview !== '') : ?>
+                            <p class="cf-video-desc"><?php echo htmlspecialchars($descPreview, ENT_QUOTES, 'UTF-8'); ?></p>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -168,8 +169,10 @@ $cfVimeoId = function (string $source): string {
 
             document.getElementById('cf-modal-player').innerHTML = html;
             document.getElementById('cf-modal-title').textContent = v.title;
-            document.getElementById('cf-modal-desc').textContent = v.desc || '';
-            document.getElementById('cf-modal-desc').style.display = v.desc ? '' : 'none';
+            // Description is admin-authored HTML (safehtml-filtered on save)
+            var hasDesc = v.desc && v.desc.replace(/<[^>]*>/g, '').trim() !== '';
+            document.getElementById('cf-modal-desc').innerHTML = hasDesc ? v.desc : '';
+            document.getElementById('cf-modal-desc').style.display = hasDesc ? '' : 'none';
 
             var modal = document.getElementById('cf-modal');
             modal.classList.add('cf-modal--open');

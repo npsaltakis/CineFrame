@@ -13,7 +13,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 
-$cssUrl = Uri::root(true) . '/media/plg_content_cineframe/css/cineframe.css?v=1.2.2';
+$cssUrl = Uri::root(true) . '/media/plg_content_cineframe/css/cineframe.css?v=1.2.3';
 ?>
 <link rel="stylesheet" href="<?php echo $cssUrl; ?>"><?php // injected here since addStyleSheet fires after <head> in some templates ?>
 <div class="cf-page">
