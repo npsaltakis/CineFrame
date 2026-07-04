@@ -5,6 +5,7 @@
         <description>CineFrame - video library component + content plugin for Joomla 5</description>
         <element>pkg_cineframe</element>
         <type>package</type>
+        <client>site</client>
         <version>1.2.2</version>
         <infourl title="CineFrame">https://github.com/npsaltakis/CineFrame</infourl>
         <downloads>
@@ -19,6 +20,7 @@
         <description>CineFrame - video library component + content plugin for Joomla 6</description>
         <element>pkg_cineframe</element>
         <type>package</type>
+        <client>site</client>
         <version>1.2.2</version>
         <infourl title="CineFrame">https://github.com/npsaltakis/CineFrame</infourl>
         <downloads>
