@@ -2,10 +2,11 @@
 <extension type="component" method="upgrade">
     <name>com_cineframe</name>
     <author>WebtechSolutions</author>
+    <authorUrl>https://github.com/npsaltakis/CineFrame</authorUrl>
     <creationDate>2026-07</creationDate>
     <copyright>(C) 2026 WebtechSolutions</copyright>
     <license>GNU General Public License version 2 or later</license>
-    <version>1.2.4</version>
+    <version>1.2.5</version>
     <description>COM_CINEFRAME_XML_DESCRIPTION</description>
     <namespace path="src">Webtech\Component\Cineframe</namespace>
 

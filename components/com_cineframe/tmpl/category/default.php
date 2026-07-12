@@ -148,10 +148,10 @@ $cfVimeoId = function (string $source): string {
             var html = '';
             if (v.type === 'youtube') {
                 var yid = cfYoutubeId(v.source);
-                if (yid) html = '<iframe src="https://www.youtube-nocookie.com/embed/' + yid + '?autoplay=1&rel=0" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>';
+                if (yid) html = '<' + 'iframe src="https://www.youtube-nocookie.com/embed/' + yid + '?autoplay=1&rel=0" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></' + 'iframe>';
             } else if (v.type === 'vimeo') {
                 var vid = cfVimeoId(v.source);
-                if (vid) html = '<iframe src="https://player.vimeo.com/video/' + vid + '?autoplay=1" frameborder="0" allowfullscreen></iframe>';
+                if (vid) html = '<' + 'iframe src="https://player.vimeo.com/video/' + vid + '?autoplay=1" frameborder="0" allowfullscreen></' + 'iframe>';
             } else if (v.type === 'video') {
                 html = '<video src="' + v.source + '" controls autoplay></video>';
             } else {

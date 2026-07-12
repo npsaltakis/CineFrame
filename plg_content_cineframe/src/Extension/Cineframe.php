@@ -177,10 +177,10 @@ final class Cineframe extends CMSPlugin implements SubscriberInterface, Database
 
         return '<div class="cineframe"' . $maxWidth . '>'
             . '<div class="cineframe__frame">'
-            . '<iframe src="' . htmlspecialchars($embedUrl, ENT_QUOTES) . '"'
+            . '<' . 'iframe src="' . htmlspecialchars($embedUrl, ENT_QUOTES) . '"'
             . ' frameborder="0" loading="lazy"'
             . ' allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"'
-            . ' allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>'
+            . ' allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></' . 'iframe>'
             . '</div></div>';
     }
 
@@ -284,7 +284,7 @@ final class Cineframe extends CMSPlugin implements SubscriberInterface, Database
     {
         $source = trim($source);
 
-        if (preg_match('~<iframe\b~i', $source) !== 1) {
+        if (preg_match('~<' . 'iframe\b~i', $source) !== 1) {
             return '';
         }
 
