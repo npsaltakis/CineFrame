@@ -5,8 +5,8 @@
     <creationDate>2026-07</creationDate>
     <copyright>(C) 2026 WebtechSolutions</copyright>
     <license>GNU General Public License version 2 or later</license>
-    <version>1.2.3</version>
-    <description>CineFrame - βιβλιοθήκη βίντεο με frontend gallery (YouTube/Vimeo/video URL/iframe embed) και {cineframe videoid=N} για άρθρα.</description>
+    <version>1.2.4</version>
+    <description>COM_CINEFRAME_XML_DESCRIPTION</description>
     <namespace path="src">Webtech\Component\Cineframe</namespace>
 
     <install>
@@ -26,16 +26,17 @@
     </update>
 
     <files folder="components/com_cineframe">
+        <folder>language</folder>
         <folder>services</folder>
         <folder>src</folder>
         <folder>tmpl</folder>
     </files>
 
     <administration>
-        <menu link="option=com_cineframe">CineFrame</menu>
+        <menu link="option=com_cineframe">COM_CINEFRAME</menu>
         <submenu>
-            <menu link="option=com_cineframe&amp;view=videos">Βίντεο</menu>
-            <menu link="option=com_cineframe&amp;view=categories">Κατηγορίες</menu>
+            <menu link="option=com_cineframe&amp;view=videos">COM_CINEFRAME_SUBMENU_VIDEOS</menu>
+            <menu link="option=com_cineframe&amp;view=categories">COM_CINEFRAME_SUBMENU_CATEGORIES</menu>
         </submenu>
         <files folder="administrator/components/com_cineframe">
             <folder>forms</folder>

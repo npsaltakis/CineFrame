@@ -14,11 +14,13 @@ namespace Webtech\Component\Cineframe\Site\View\Category;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
+use Joomla\CMS\Pagination\Pagination;
 
 class HtmlView extends BaseHtmlView
 {
     public ?object $category = null;
     public array   $videos   = [];
+    public ?Pagination $pagination = null;
 
     public function display($tpl = null): void
     {
@@ -26,8 +28,9 @@ class HtmlView extends BaseHtmlView
 
         /** @var \Webtech\Component\Cineframe\Site\Model\CategoryModel $model */
         $model = $this->getModel();
-        $this->category = $model->getCategory($catid);
-        $this->videos   = $model->getVideos($catid);
+        $this->category   = $model->getCategory($catid);
+        $this->videos     = $model->getItems();
+        $this->pagination = $model->getPagination();
 
         parent::display($tpl);
     }

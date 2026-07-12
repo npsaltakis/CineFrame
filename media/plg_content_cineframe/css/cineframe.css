@@ -364,6 +364,52 @@
     padding: 2rem 0;
 }
 
+/* ── Pagination ── */
+.cf-pagination {
+    margin-top: 2.25rem;
+    display: flex;
+    justify-content: center;
+}
+.cf-pagination ul.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .35rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.cf-pagination .page-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.2rem;
+    height: 2.2rem;
+    padding: 0 .5rem;
+    border-radius: 8px;
+    border: 1px solid #e8e8e8;
+    background: #fff;
+    color: #1a1a1a;
+    font-size: .82rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: border-color .15s, color .15s, background .15s;
+}
+.cf-pagination .page-link:hover {
+    border-color: #ec430f;
+    color: #ec430f;
+}
+.cf-pagination .page-item.active .page-link {
+    background: #ec430f;
+    border-color: #ec430f;
+    color: #fff;
+}
+.cf-pagination .page-item.disabled .page-link {
+    color: #ccc;
+    border-color: #eee;
+    pointer-events: none;
+}
+
 @media (max-width: 600px) {
     .cf-cat-grid { grid-template-columns: 1fr; }
     .cf-video-grid { grid-template-columns: 1fr; }

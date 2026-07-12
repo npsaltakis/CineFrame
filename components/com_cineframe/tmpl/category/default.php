@@ -10,10 +10,11 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 
-$cssUrl = Uri::root(true) . '/media/plg_content_cineframe/css/cineframe.css?v=1.2.3';
+$cssUrl = Uri::root(true) . '/media/plg_content_cineframe/css/cineframe.css?v=1.2.4';
 
 // ID extraction aligned with plg_content_cineframe: accepts bare IDs and all URL forms.
 $cfYoutubeId = function (string $source): string {
@@ -61,14 +62,14 @@ $cfVimeoId = function (string $source): string {
 <div class="cf-page">
 
     <div class="cf-page-header">
-        <a class="cf-back-link" href="<?php echo Route::_('index.php?option=com_cineframe&view=categories'); ?>">&#8592; Βιντεοθήκη</a>
+        <a class="cf-back-link" href="<?php echo Route::_('index.php?option=com_cineframe&view=categories'); ?>">&#8592; <?php echo Text::_('COM_CINEFRAME_SITE_TITLE'); ?></a>
         <?php if ($this->category) : ?>
             <h1 class="cf-page-header__title"><?php echo htmlspecialchars($this->category->name, ENT_QUOTES, 'UTF-8'); ?></h1>
         <?php endif; ?>
     </div>
 
     <?php if (empty($this->videos)) : ?>
-        <p class="cf-empty">Δεν υπάρχουν βίντεο σε αυτή την κατηγορία.</p>
+        <p class="cf-empty"><?php echo Text::_('COM_CINEFRAME_SITE_NO_VIDEOS'); ?></p>
     <?php else : ?>
         <div class="cf-video-grid">
             <?php foreach ($this->videos as $v) :
@@ -107,6 +108,12 @@ $cfVimeoId = function (string $source): string {
                 </div>
             <?php endforeach; ?>
         </div>
+
+        <?php if ($this->pagination && $this->pagination->pagesTotal > 1) : ?>
+            <nav class="cf-pagination">
+                <?php echo $this->pagination->getPagesLinks(); ?>
+            </nav>
+        <?php endif; ?>
 
         <script>
         var cfVideos = <?php echo json_encode(array_map(function($v) {
